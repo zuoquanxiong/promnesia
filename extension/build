@@ -6,7 +6,7 @@ import os
 import subprocess
 import sys
 from pathlib import Path
-from subprocess import check_call
+from subprocess import check_call, check_output
 
 # right, specifying id in manifest doesn't seem to work
 # AMO responds with: Server response: Duplicate add-on ID found. (status: 400)
@@ -208,7 +208,8 @@ def main() -> None:
         assert args.lint
         assert args.release
 
-        check_call(['git', 'diff-index', '--exit-code', 'HEAD'])  # ensure repo is clean
+        repo_status = check_output(['git', 'status', '--porcelain', '--untracked-files=no'], text=True)
+        assert len(repo_status) == 0, repo_status  # ensure repo is clean
         source_zip = base_ext_dir / f'extension-source-{target}.zip'
         check_call(['git', 'archive', 'HEAD', '--output', source_zip], cwd=THISDIR)  # cwd so we only package the extension
 
