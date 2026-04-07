@@ -220,8 +220,8 @@ export function generateManifest({
             },
         }
     }
-    if (target === T.CHROME) {
-        // to achieve stable extension id, needs "key" in manifest.json (this is injected in generate_manifest)
+    if (target === T.CHROME && !publish) {
+        // to achieve stable extension id during development, needs "key" in manifest.json (this is injected in generate_manifest)
         // see https://developer.chrome.com/docs/extensions/reference/manifest/key
         manifest['key'] = "cHJvbW5lc2lhLWV4dGVuc2lvbi1pZA=="  // this needs to be a base64 string
     }
