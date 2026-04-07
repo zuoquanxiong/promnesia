@@ -1,7 +1,7 @@
 {
   "name": "Promnesia",
-  "version": "1.4.1",
-  "version_name": "released on 2026.04.06",
+  "version": "1.4.2",
+  "version_name": "released on 2026.04.07",
   "description": "Recall which pages you already visited, why and in which context",
   "scripts": {
     "test": "jest",
